@@ -64,4 +64,5 @@ jobs:
           environment_name: Dev-prac-env
           version_label: github-action-${{ steps.current-time.outputs.formattedTime }}
           region: ap-northeast-2
-          deployment_package: ./build/libs/${{ env.artifact }}
+#          deployment_package: ./build/libs/${{ env.artifact }}
+          deployment_package: ./build/libs/hunmin-0.0.1-SNAPSHOT.jar    # 직접 JAR 파일 경로 지정
