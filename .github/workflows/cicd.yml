@@ -47,9 +47,12 @@ jobs:
       # 배포용 패키지 경로 저장
       - name: Set artifact
         run: |
-          ARTIFACT_NAME=$(ls ./build/libs/*.jar | head -n 1)
-          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=$(ls ./build/libs/*.jar | grep -v plain | head -n 1)" >> $GITHUB_ENV
         shell: bash
+
+      # 디버깅을 위한 파일 확인
+      - name: List build directory
+        run: ls -la ./build/libs/
 
       # 빈스토크 배포
       - name: Beanstalk Deploy
