@@ -1,5 +1,5 @@
 # 워크플로우의 이름 지정
-name: CICD
+name: CI/CD
 
 # 워크플로가 시작될 조건 지정
 on:
@@ -46,7 +46,10 @@ jobs:
 
       # 배포용 패키지 경로 저장
       - name: Set artifact
-        run: echo "artifact=$(ls ./build/libs)" >> $GITHUB_ENV
+        run: |
+          ARTIFACT_NAME=$(ls ./build/libs/*.jar | head -n 1)
+          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+        shell: bash
 
       # 빈스토크 배포
       - name: Beanstalk Deploy
